@@ -20,6 +20,7 @@ This fork adds tools to easily search and interact with the class materials:
   - Interactive Q&A grounded in the course materials with exact slide citations.
   - Built-in quiz mode (`quiz me`) to practice core Git and Bash exam concepts.
   - Guidance for Homework 1 & Homework 2 requirements.
+  - Local "AI" chat bot and ability to use external API keys for Gemini, ChatGPT and local Ollama
 
 ---
 
