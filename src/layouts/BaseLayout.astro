@@ -63,6 +63,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 <li><a href={`${baseUrl}links/`}>links</a></li>
                 <li><a href={`${baseUrl}syllabus/`}>syllabus</a></li>
                 <li><a href={`${baseUrl}homeworks/`}>homeworks</a></li>
+                <li><a href={`${baseUrl}search/`}>🔍 search</a></li>
+                <li><a href={`${baseUrl}agent/`}>🤖 ai agent</a></li>
                 <li>
                   <a
                     href="https://copy.sh/v86/?profile=archlinux"
@@ -85,6 +87,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
                 <li><a href={`${baseUrl}links/`} class="button inline">links</a></li>
                 <li><a href={`${baseUrl}syllabus/`} class="button inline">syllabus</a></li>
                 <li><a href={`${baseUrl}homeworks/`} class="button inline">homeworks</a></li>
+                <li><a href={`${baseUrl}search/`} class="button inline nav-search-pill">🔍 search</a></li>
+                <li><a href={`${baseUrl}agent/`} class="button inline nav-agent-pill">🤖 ai agent</a></li>
             <li>
               <a
                 href="https://copy.sh/v86/?profile=archlinux"
@@ -129,5 +133,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
   .bordered-top {
     border-top: 1px solid var(--secondary);
+  }
+
+  .nav-search-pill {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-agent-pill {
+    border-color: var(--secondary);
+    color: var(--secondary);
+  }
+
+  .nav-agent-pill:hover {
+    background: color-mix(in srgb, var(--secondary) 15%, transparent);
   }
 </style>

@@ -2,7 +2,7 @@
 import ArcticleLayout from '../layouts/ArticleLayout.astro';
 import LessonOverview from '../components/LessonOverview.astro';
 
-import { getLessons } from '../helpers.astro';
+import { baseUrl, getLessons } from '../helpers.astro';
 
 const lessons = await getLessons();
 ---
@@ -12,8 +12,8 @@ const lessons = await getLessons();
     <h1 id="hello-there">Hello there!</h1>
     <p>Welcome to COS 3100: Intro to Git</p>
     <p>
-      This is a short course about bash and git inteded as introduction to the basics for students and anyone who is just getting started.
-      The course is taught live at the American University in Bulgaria (AUBG)
+      This is a short course about bash and git intended as introduction to the basics for students and anyone who is just getting started.
+      The course is taught live at the American University in Bulgaria (AUBG).
     </p>
     
     <p>
@@ -24,8 +24,165 @@ const lessons = await getLessons();
       Course author and lecturer Mihail Mikov
     </p>
   </div>
+
+  <!-- Search & AI Interactive Hub Banner -->
+  <div class="interactive-hub framed">
+    <div class="hub-header">
+      <span class="hub-badge">LOCAL ARCHIVE SEARCH & AI</span>
+      <h2>Search Course Materials & AI Assistant</h2>
+      <p>
+        Quickly find any topic across <strong>330+ Reveal.js presentation slides</strong>, or ask the AI Teaching Assistant to explain concepts, guide homework, or quiz you.
+      </p>
+    </div>
+
+    <form action={`${baseUrl}search/`} method="GET" class="hub-search-form">
+      <div class="hub-input-row">
+        <span class="hub-prompt">$</span>
+        <input
+          type="text"
+          name="q"
+          class="hub-search-input"
+          placeholder="Search slides & lessons (e.g. 'rebase', 'staging', 'detached HEAD', 'chmod')..."
+          autocomplete="off"
+        />
+        <button type="submit" class="button inline hub-search-btn">🔍 Search</button>
+      </div>
+    </form>
+
+    <div class="hub-actions-row">
+      <div class="hub-quick-chips">
+        <span class="chips-label">Quick topics:</span>
+        <a href={`${baseUrl}search/?q=staging+area`} class="hub-chip">staging</a>
+        <a href={`${baseUrl}search/?q=rebase`} class="hub-chip">rebase</a>
+        <a href={`${baseUrl}search/?q=detached+HEAD`} class="hub-chip">detached HEAD</a>
+        <a href={`${baseUrl}search/?q=merge+conflict`} class="hub-chip">conflicts</a>
+        <a href={`${baseUrl}search/?q=internals+blob+tree`} class="hub-chip">internals</a>
+        <a href={`${baseUrl}search/?q=homework1`} class="hub-chip">homework 1</a>
+      </div>
+      <a href={`${baseUrl}agent/`} class="button inline hub-ai-btn">🤖 Open Course AI Agent →</a>
+    </div>
+  </div>
   
   <div class="posts">
     {lessons.map((lesson) => <LessonOverview lesson={lesson} />)}
   </div>
 </ArcticleLayout>
+
+<style>
+  .interactive-hub {
+    margin-bottom: 40px;
+    background: rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 3px solid var(--accent);
+  }
+
+  .hub-badge {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--background);
+    background: var(--accent);
+    padding: 2px 6px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .hub-header h2 {
+    color: var(--accent);
+    font-size: 1.4rem;
+    margin: 4px 0 6px 0;
+  }
+
+  .hub-header p {
+    font-size: 0.9rem;
+    color: rgba(236, 234, 229, 0.85);
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  .hub-search-form {
+    margin: 0;
+  }
+
+  .hub-input-row {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--accent);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 10px;
+    gap: 8px;
+  }
+
+  .hub-prompt {
+    font-weight: bold;
+    color: var(--accent);
+    font-size: 1.2rem;
+  }
+
+  .hub-search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--foreground);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  .hub-search-input::placeholder {
+    color: rgba(236, 234, 229, 0.4);
+    font-size: 0.85rem;
+  }
+
+  .hub-search-btn {
+    padding: 4px 12px;
+    font-size: 0.85rem;
+  }
+
+  .hub-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hub-quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .chips-label {
+    font-size: 0.8rem;
+    color: var(--secondary);
+  }
+
+  .hub-chip {
+    background: transparent;
+    border: 1px dashed rgba(246, 231, 178, 0.5);
+    color: var(--secondary);
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .hub-chip:hover {
+    background: rgba(246, 231, 178, 0.2);
+    text-decoration: underline;
+  }
+
+  .hub-ai-btn {
+    border-color: var(--secondary);
+    color: var(--secondary);
+    font-size: 0.85rem;
+    padding: 4px 12px;
+  }
+
+  .hub-ai-btn:hover {
+    background: rgba(246, 231, 178, 0.15);
+  }
+</style>
