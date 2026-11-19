@@ -23,6 +23,12 @@ This fork adds tools to easily search and interact with the class materials:
 
 ---
 
+## AI Usage Disclosure
+
+AI tools were used during the development of this project to assist with implementation and debugging. AI-generated suggestions were reviewed, adapted, and tested as part of the development process.
+
+---
+
 ## How to Run Locally
 
 ```bash
